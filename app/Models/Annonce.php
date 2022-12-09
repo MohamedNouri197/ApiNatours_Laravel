@@ -12,9 +12,11 @@ class Annonce extends Model
         'titre',
         'prix',
         'localisation'
-        ,'details'
-    ];
-    public function Categorie()
+        ,'details',
+        'cat_id'
+ ];
+
+ public function Categorie()
     {
         return $this->belongsTo(Categorie::class);
     }

@@ -26,4 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('categories',CategorieController::class);
 Route::apiResource('annonces',AnnonceController::class);
 Route::apiResource('utulisateurs',UtulisateurController::class);
+//Route::post('/addannonceToCategorie', [AnnonceController::class, 'addAnnonceToCategorie']);
+
 //Route::apiResource('annonces.addAnnonceToCategorie',AnnonceController::class);

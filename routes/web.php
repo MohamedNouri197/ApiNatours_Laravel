@@ -24,4 +24,5 @@ Route::get('/page/{a}',function()
 {
     return view('page');
 });
+//Route::get('/addannonceToCategorie', [AnnonceController::class, 'index']);
 ?>

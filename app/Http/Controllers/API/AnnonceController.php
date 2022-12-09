@@ -32,7 +32,8 @@ class AnnonceController extends Controller
             'titre'=>$request->titre,
             'localisation'=>$request->localisation,
             'prix'=>$request->prix,
-            'details'=>$request->details
+            'details'=>$request->details,
+            'cat_id'=>$request->cat_id
         ]);
 
         return response(["message"=>"annonce ajoute avec succees"],201);
@@ -58,7 +59,7 @@ class AnnonceController extends Controller
      */
     public function update(Request $request, Annonce $annonce)
     {
-     
+
         $annonce->update([
           "titre"=>$request->titre,
           "prix"=>$request->prix,
@@ -67,13 +68,13 @@ class AnnonceController extends Controller
         ]);
         return response()->json();
            /*  $anc= Annonce::findOrFail($id);
-     
+
        $anc->update($request->all());
-            
+
         return response(["message"=>"mise a jour d'annonce fait avec success","annonce"=>$anc]);
    */
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -86,17 +87,18 @@ class AnnonceController extends Controller
         $annonce->delete();
         return response(["message"=>"annonce supprimer avec success"],201);
     }
-    public function addAnnonceToCategorie(Request $request, $id_c)
+   /*   public function addAnnonceToCategorie(Request $request)
     {
         $annonce=Annonce::create([
             'titre'=>$request->titre,
             'localisation'=>$request->localisation,
             'prix'=>$request->prix,
             'details'=>$request->details,
-            'id_cat'=>$id_c
+            'id_cat'=>$request->id_cat
 
         ]);
-                return response(["message"=>"annonce effectuer a une categorie avec succees"],201);
+         return response(["message"=>"annonce effectuer a une categorie avec succees"],201);
 
-    }
+    } */
+
 }

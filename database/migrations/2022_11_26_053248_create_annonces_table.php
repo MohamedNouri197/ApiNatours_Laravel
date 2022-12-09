@@ -19,14 +19,17 @@ return new class extends Migration
             $table->string('prix');
             $table->string('localisation');
             $table->string('details');
+            // merci de verifier cette instruction
+           // $table->foreign('cat_id')->references('id')->on('categories');//->onCascade('delete');
             $table->timestamps();
+            $table->foreignId('cat_id')->constrained('categories');
 
             // affecter la cle etrangere
            // $table->unsignedBigInteger('catg_id');
            // $table->foreign('catg_id')->references('id')->on ('categories');
 
             // ==> la ligne suivante permet de nos definir les deux lignes precedentes
-          //  $table->foreignId('cat_id')->constrained();
+           // $table->foreignId('cat_id')->constrained();
 
         });
     }
