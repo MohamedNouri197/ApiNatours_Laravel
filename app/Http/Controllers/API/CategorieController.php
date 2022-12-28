@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CategorieController extends Controller
 {
+
+    // pour que les functions ne repond qu'apres l'authentification
+/*     public function __construct()
+    {
+        $this->middleware('auth:api');
+     } */
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class CategorieController extends Controller
     public function index()
     {
         $categories=Categorie::all();
-        return response()->json($categories);
+        return response()->json(['categories'=>$categories,"status"=>201]);
     }
 
     /**
@@ -37,7 +44,7 @@ class CategorieController extends Controller
             'titre'=> $request->titre
         ]);
 
-        return response()->json($cat,201);
+        return response()->json(["message"=>"categorie ajouter avec success","success"=>201]);
     }
 
     /**
@@ -50,8 +57,8 @@ class CategorieController extends Controller
     {
         $c=Categorie::find($id);
         // return les infos de categorie
-      
-        return response()->json($c);
+
+        return response()->json(["message"=>"affichage avec success","status"=>201,"cat"=>$c]);
     }
 
     /**
@@ -64,9 +71,9 @@ class CategorieController extends Controller
     public function update(Request $request, $id)
     {
          $cat= Categorie::findOrFail($id);
-     
+
        $cat->update($request->all());
-            
+
         return response(["message"=>"mise a jour de l'categorie fait avec success","categorie"=>$cat]);
     }
 

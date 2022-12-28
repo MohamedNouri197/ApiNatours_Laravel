@@ -15,15 +15,30 @@ return new class extends Migration
     {
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
             $table->string('titre');
             $table->string('prix');
             $table->string('localisation');
-            $table->string('details');
-            // merci de verifier cette instruction
-           // $table->foreign('cat_id')->references('id')->on('categories');//->onCascade('delete');
-            $table->timestamps();
-            $table->foreignId('cat_id')->constrained('categories');
+            $table->string('annee');
+            $table->string('etat');
+            $table->string('premiereMain');
+                        $table->string('marke');
+            $table->string('modele');
 
+            $table->string('cylindre');
+            $table->string('typeCarburant');
+            $table->string('couleur');
+
+                        $table->string('details');
+            $table->string('cat_id');
+            $table->string('utulis_id');
+            // merci de verifier cette instruction
+           //
+
+         //  $table->foreign('cat_id')->references('id')->on('categories');//->onCascade('delete');
+            $table->timestamps();
+         //   $table->foreignId('cat_id')->constrained('categories');
+         //    $table->foreignId('utulis_id')->constrained('utulisateurs');
             // affecter la cle etrangere
            // $table->unsignedBigInteger('catg_id');
            // $table->foreign('catg_id')->references('id')->on ('categories');

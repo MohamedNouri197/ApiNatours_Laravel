@@ -7,6 +7,7 @@ use App\Http\Controllers\API\CategorieController;
 use App\Http\Controllers\API\AnnonceController;
 
 use App\Http\Controllers\API\UtulisateurController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -29,3 +30,14 @@ Route::apiResource('utulisateurs',UtulisateurController::class);
 //Route::post('/addannonceToCategorie', [AnnonceController::class, 'addAnnonceToCategorie']);
 
 //Route::apiResource('annonces.addAnnonceToCategorie',AnnonceController::class);
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+
+});

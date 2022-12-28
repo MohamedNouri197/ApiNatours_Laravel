@@ -28,12 +28,37 @@ class AnnonceController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
+   //  il faut concatener le nom de photo avec le temps => on cas de stocker avec le meme photo on
+   // trouve comment en peut le differe nos photo name
+   // $file_name=time().$file_extension
+
+  $this->validate($request, [
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        $image_path = $request->file('image')->store('image', 'public');
+
+
         $cat=Annonce::create([
+          'image' => $image_path,
+
             'titre'=>$request->titre,
+             'prix'=>$request->prix,
             'localisation'=>$request->localisation,
-            'prix'=>$request->prix,
-            'details'=>$request->details,
-            'cat_id'=>$request->cat_id
+            'annee'=>$request->annee,
+            'etat'=>$request->etat,
+            'premiereMain'=>$request->premiereMain,
+            'marke'=>$request->marke,
+            'modele'=>$request->modele,
+            'cylindre'=>$request->cylindre,
+            'typeCarburant'=>$request->typeCarburant,
+            'couleur'=>$request->couleur,
+         'details'=>$request->details,
+            'cat_id'=>$request->cat_id,
+            'utulis_id'=>$request->utulis_id,
+
         ]);
 
         return response(["message"=>"annonce ajoute avec succees"],201);
@@ -60,19 +85,17 @@ class AnnonceController extends Controller
     public function update(Request $request, Annonce $annonce)
     {
 
-        $annonce->update([
+      /*   $annonce->update([
           "titre"=>$request->titre,
           "prix"=>$request->prix,
           "localisation"=> $request->localisation,
           "details"=>$request->details
-        ]);
-        return response()->json();
-           /*  $anc= Annonce::findOrFail($id);
+        ]); */
+        $annonce=Annonce::Update(
+            $request->all());
 
-       $anc->update($request->all());
+        return response()->json(["message"=>"mise a jour fait avec succes"],201);
 
-        return response(["message"=>"mise a jour d'annonce fait avec success","annonce"=>$anc]);
-   */
     }
 
 

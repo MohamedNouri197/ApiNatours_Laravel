@@ -9,15 +9,32 @@ class Annonce extends Model
 {
     use HasFactory;
      protected $fillable = [
+        'image',
         'titre',
         'prix',
-        'localisation'
-        ,'details',
-        'cat_id'
- ];
+        'localisation',
+          'annee',
+          'etat',
+          'premiereMain',
+          'marke',
+          'modele',
+          'cylindre',
+          'typeCarburant',
+          'couleur',
+          'details',
+          'cat_id',
+          'user_id'
+
+ ] ;
 
  public function Categorie()
     {
         return $this->belongsTo(Categorie::class);
     }
+
+public function User()
+{
+    return $this->belongsTo(User::class);
+}
+
 }
