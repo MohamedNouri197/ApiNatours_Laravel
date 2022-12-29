@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Annonce;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnnonceController extends Controller
 {
@@ -28,8 +29,14 @@ class AnnonceController extends Controller
      */
     public function store(Request $request)
     {
+ $this->validate($request,[
+            'user_id'=>'required',
+            'cat_id'=>'required'
 
-
+        ]);
+// le user qui est connecter
+        $user=Auth::user();
+        $id=Auth::id();
 
    //  il faut concatener le nom de photo avec le temps => on cas de stocker avec le meme photo on
    // trouve comment en peut le differe nos photo name
@@ -57,11 +64,11 @@ class AnnonceController extends Controller
             'couleur'=>$request->couleur,
          'details'=>$request->details,
             'cat_id'=>$request->cat_id,
-            'utulis_id'=>$request->utulis_id,
+            'user_id'=>$request->user_id,
 
         ]);
 
-        return response(["message"=>"annonce ajoute avec succees"],201);
+        return response(["message"=>"annonce ajoute avec succees",$id],201);
     }
 
     /**

@@ -29,11 +29,11 @@ class UserController extends Controller
     {
           $user=User::create([
             'nom'=>$request->nom,
-           // 'prenom'=>$request->prenom,
-          //  'num_tel'=>$request->num_tel,
+           'prenom'=>$request->prenom,
+           'num_tel'=>$request->num_tel,
             'email'=>$request->email,
             'password'=>$request->password,
-        //    'role'=>$request->role,
+           'role'=>$request->role,
           ]);
           return response(["message"=>"user ajoute avec success"],201);
     }

@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use Illuminate\Support\Facades\Auth;
 return new class extends Migration
 {
     /**
@@ -22,33 +23,34 @@ return new class extends Migration
             $table->string('annee');
             $table->string('etat');
             $table->string('premiereMain');
-                        $table->string('marke');
+            $table->string('marke');
             $table->string('modele');
 
             $table->string('cylindre');
             $table->string('typeCarburant');
             $table->string('couleur');
 
-                        $table->string('details');
-            $table->string('cat_id');
-            $table->string('utulis_id');
-            // merci de verifier cette instruction
-           //
-
-         //  $table->foreign('cat_id')->references('id')->on('categories');//->onCascade('delete');
+            $table->string('details');
             $table->timestamps();
-         //   $table->foreignId('cat_id')->constrained('categories');
-         //    $table->foreignId('utulis_id')->constrained('utulisateurs');
-            // affecter la cle etrangere
-           // $table->unsignedBigInteger('catg_id');
-           // $table->foreign('catg_id')->references('id')->on ('categories');
+         //   $table->string('user_id');
+           /*  $table->string('cat_id');
+             */
 
-            // ==> la ligne suivante permet de nos definir les deux lignes precedentes
-           // $table->foreignId('cat_id')->constrained();
+/*
+dernier version
+--------------------------------------------------------*/
 
-        });
-    }
 
+ $table->integer('user_id')->unsigned();
+          // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+ $table->integer('cat_id')->unsigned();
+        //   $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
+
+
+
+ });
+
+        }
     /**
      * Reverse the migrations.
      *

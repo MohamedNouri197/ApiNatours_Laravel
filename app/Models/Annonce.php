@@ -21,9 +21,10 @@ class Annonce extends Model
           'cylindre',
           'typeCarburant',
           'couleur',
-          'details',
+          'details'
+          ,'user_id',
           'cat_id',
-          'user_id'
+
 
  ] ;
 
